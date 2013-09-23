@@ -23,3 +23,5 @@ So far, I've wrapped:
 with an in-progress Naive Bayes as well (needs debugging).
 
 Thanks to [Rune Madsen](http://github.com/runemadsen) for starting the RDF implementation.
+
+_I've also included an implementation with my libsvm-based [Processing-SVM](https://github.com/atduskgreg/processing-svm) library for comparison with OpenCV's svm implementation. For some reason libsvm produces signficantly better results with the same parameters._

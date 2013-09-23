@@ -53,7 +53,7 @@ Sample[] samplesFromTable(Table table, boolean isTraining) {
     }
 
 
-//    sample.featureVector[6] = embarkedCode;
+    sample.featureVector[6] = embarkedCode;
 
     result[row-1] = sample;
   }
