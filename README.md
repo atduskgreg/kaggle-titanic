@@ -18,6 +18,7 @@ So far, I've wrapped:
 * KNN
 * AdaBoost
 * Random Decision Forests
+* SVM
 
 with an in-progress Naive Bayes as well (needs debugging).
 
