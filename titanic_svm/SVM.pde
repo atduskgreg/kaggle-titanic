@@ -63,14 +63,32 @@ class SVM {
 
 
     CvSVMParams params = new CvSVMParams();
-//    params.set_svm_type(CvSVM.C_SVC);
-//    params.set_kernel_type(CvSVM.LINEAR);
-//    params.set_degree(3);
-//    params.set_C(100);
-//    params.set_nu(0.5);
-//    params.set_p(0.1);
 
-    params.set_term_crit(new TermCriteria(TermCriteria.MAX_ITER + TermCriteria.EPS, 1000, 1e-6));
+    params.set_svm_type(CvSVM.C_SVC);
+    params.set_kernel_type(CvSVM.RBF);
+    params.set_degree(3);
+    params.set_C(100);
+    params.set_coef0(0);
+    params.set_nu(0.5);
+    params.set_p(0.1);
+
+
+    /*
+     params.degree = 3;
+     params.gamma = 0;
+     params.C = 100;
+     params.coef0 = 0;
+     params.nu = 0.5;
+     params.cache_size = 100;
+     params.eps = 1e-3;
+     params.p = 0.1;
+     params.shrinking = 1;
+     params.probability = 0;
+     params.nr_weight = 0;
+     */
+
+
+    params.set_term_crit(new TermCriteria(TermCriteria.MAX_ITER + TermCriteria.EPS, 100, 1e-3));
 
     classifier = new CvSVM();
     classifier.train_auto(trainingMat, labelMat, new Mat(), new Mat(), params);

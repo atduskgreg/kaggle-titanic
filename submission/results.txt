@@ -1,0 +1,18 @@
+Random Decision Forest w/just pclass, sex, age, and fare
+Accuracy: 0.8362063
+Precision: 0.83975756
+Recall: 0.7050301
+F-measure: 0.7640599
+
+AdaBoost w/all 7 columns
+Accuracy: 0.81207716
+Precision: 0.76422685
+Recall: 0.7307183
+F-measure: 0.7457843
+
+Libsvm w/all 7 columns
+===Average Results===
+Accuracy: 0.78689253
+Precision: 0.7366071
+Recall: 0.6763451
+F-measure: 0.70421714

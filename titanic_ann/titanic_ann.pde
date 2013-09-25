@@ -61,7 +61,7 @@ Sample[] samplesFromTable(Table table, boolean isTraining) {
   return result;
 }
 
-NormalBayes classifier;
+NeuralNetwork classifier;
 
 // TODO: can't test on the test data since it has no label,
 //       gotta partition the training data.
@@ -89,29 +89,24 @@ void setup() {
   println(training.size() + " " + testing.size() + " " + (float)training.size()/(training.size() + testing.size()));
 
   OpenCV opencv = new OpenCV(this, 0, 0);
-  classifier = new NormalBayes();
+  classifier = new NeuralNetwork();
   classifier.addTrainingSamples(training);
   classifier.train();
 
   int numCorrect = 0;
   for (Sample sample : testing) {
-    float  prediction = classifier.predict(sample);
-    
-    println("Prediction: " + prediction);
+    double prediction = classifier.predict(sample);
 
-//    if(numCorrect == 0){
-//      println(sample.featureVector);
-//    }
+    println("Prediction: " + (int)prediction);
 
-    if ((int)prediction == sample.label) {
+
+    if ((int) prediction == sample.label) {
       numCorrect++;
     }
   }
 
   println("Score: " + numCorrect + "/" + testing.size() + " (" + ((float)numCorrect/testing.size()) + "%)" );
-
 }
 
 void draw() {
 }
-

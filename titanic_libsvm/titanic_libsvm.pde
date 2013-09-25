@@ -5,6 +5,7 @@ float[][] trainingVectors;
 float[][] testVectors;
 int[] labels;
 int[] sort;
+int[] answers;
 
 int numFeatures = 7;
 
@@ -107,6 +108,7 @@ void loadSamplesFromTable(Table table, boolean isTraining) {
       labels[currTrain] = table.getInt(row, 1);
       currTrain++;
     } else{
+      answers[currTest] = table.getInt(row,1);
       currTest++;
     }
   }
@@ -142,14 +144,31 @@ void setup() {
   trainingVectors = new float[numTraining][numFeatures];
   testVectors = new float[numTesting][numFeatures];
   labels = new int[numTraining];
+  answers = new int[numTesting];
 
   loadSamplesFromTable(trainingData, true);
     
   model = new SVM(this);
+  
+  model.params.kernel_type = SVM.RBF_KERNEL;
+  
   SVMProblem problem = new SVMProblem();
-  problem.setNumFeatures(numFeatures);
+  problem.setNumFeatures(2);
   problem.setSampleData(labels, trainingVectors);
   model.train(problem);
+  
+  int numCorrect = 0;
+  for(int i = 0; i < testVectors.length; i++){
+    double score = model.test(testVectors[i]);
+    
+    println("Prediction: " + (int)score);
+    
+    if((int)score == answers[i]){
+      numCorrect++;
+    }
+  }
+  
+  println("Score: " + numCorrect + "/" + testVectors.length + " (" + ((float)numCorrect/testVectors.length)+ ")");
 
   //  OpenCV opencv = new OpenCV(this, 0, 0);
   //  classifier = new SVM();
